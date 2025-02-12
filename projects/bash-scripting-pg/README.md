@@ -57,3 +57,4 @@ Happy coding! 🚀
 ## Solutions
 
 [1 - Challenge One (Even or Odd Checker).](./ch_01_simple)
+[2 - Challenge Two (STR Validation).](./ch_02_simple)
