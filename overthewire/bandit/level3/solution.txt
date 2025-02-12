@@ -1,0 +1,5 @@
+- Just Opened the bandit2@-------- Machine using the password from previous lab
+- checked the Home Directory content.
+- File has spaces so have to escape or put in ""
+- I pressed "TAB" and the terminal auto escaped it for me.
+- Password Shows off Successfully.

@@ -1,0 +1,5 @@
+## Just Open the Machine Using SSH.
+
+```bash
+ssh -p 2220 bandit0@bandit.labs.overthewire.org
+```

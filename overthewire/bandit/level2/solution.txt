@@ -1,0 +1,18 @@
+- Used ssh login:
+
+```bash
+ssh -p 2220 bandit1@bandit.labs.overthewire.org
+```
+- Used the Password from previous Lab:
+
+```txt
+ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
+```
+- After successfully login:
+
+```bash
+ls -la ~
+cat ~/"-"
+```
+
+- Password: 263JGJPfgU6LtdEvgfWU1XP5yac29mFx

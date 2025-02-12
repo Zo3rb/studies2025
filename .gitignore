@@ -1,0 +1,48 @@
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore compiled files
+*.class
+*.o
+*.out
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+*.swp
+*.swo
+
+# Ignore virtual environments
+venv/
+env/
+*/venv/
+*/env/
+
+# Ignore IDE/editor settings
+.vscode/
+.idea/
+
+# Ignore dependency directories
+node_modules/
+target/
+bin/
+obj/
+
+# Ignore Python cache and virtual environment files
+*.egg-info/
+*.pytest_cache/
+pip-wheel-metadata/
+
+# Ignore database and config files
+*.db
+*.sqlite
+*.config
+*.env
+
+# Ignore nested Git repositories
+**/.git/
