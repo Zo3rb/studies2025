@@ -1,0 +1,31 @@
+You're very close! Here are some corrections and refinements to ensure accuracy:
+
+O(1) → Constant Time ✅ (Correct)
+
+Execution time remains constant, no matter how large the input is.
+O(log n) → Logarithmic Time ✅ (Mostly Correct)
+
+Execution time grows logarithmically, meaning it increases very slowly as input size increases.
+Example: Binary search (where the input size is halved at each step).
+It's much better than linear time, not just "slightly worse than constant time."
+O(n) → Linear Time ✅ (Correct)
+
+Execution time increases proportionally to input size.
+O(n log n) → Log-Linear Time ✅ (Correct)
+
+This is better than quadratic time (O(n²)) but worse than linear time (O(n)).
+Example: Merge Sort, Quick Sort (average case).
+O(n²) → Quadratic Time ✅ (Correct)
+
+Execution time grows quadratically (e.g., doubling input size makes execution time 4x longer).
+Example: Nested loops iterating over an array.
+O(2ⁿ) → Exponential Time ✅ (Correct)
+
+Execution time doubles with each additional input, making it highly inefficient for large inputs.
+Example: Recursive Fibonacci.
+Yes, it is worse than quadratic time but still not the worst.
+O(n!) → Factorial Time ✅ (Correct)
+
+This is the worst case, growing extremely fast.
+Example: Brute-force solutions like the Traveling Salesman Problem (TSP).
+Your understanding is solid! Just tweak your O(log n) description—it's not slightly worse than O(1); it's actually much better than O(n). 🚀
