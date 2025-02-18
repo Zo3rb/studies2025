@@ -1,0 +1,14 @@
+- Opened the machine with Level 2 -> 3 Password using bandit3@host
+- Followed instructions as said the password is stored in
+- hidden file in inhere Directory
+
+- so, I used: 
+```bash
+ls -la inhere/
+```
+
+- the file name was "...Hiding-From-You
+
+- then used cat to read the txt file.
+```bash
+cat inhere/...Hiding-From-You
