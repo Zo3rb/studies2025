@@ -2,6 +2,8 @@
 
 This folder contains **solved LeetCode problems** as part of my Data Structures & Algorithms (DSA) learning journey. It includes solutions in **Python** and **JavaScript** along with explanations where necessary.
 
+![Dmytro Baida's LeetCode stats dark](https://leetcode-badge-sage.vercel.app/badge/Zo3rb?theme=dark&bgColor=282828)
+
 ## 📖 Progress Overview
 
 - ✅ **Previously Solved:** problems
