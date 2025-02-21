@@ -11,3 +11,5 @@ The password for the next level is stored in a file called **spaces in this file
 ## Helpful Reading Material
 
 - [Google Search for “spaces in filename”](https://www.google.com/search?q=spaces+in+filename)
+
+![Solution Image](solution.png)

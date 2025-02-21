@@ -1,0 +1,6 @@
+- Changed Directory to the targeted directory in the challenge.
+- listed all the files type with "file" command.
+- as shown in the solution image.
+    - the only file type "ASCII" was the file "-file07"
+- Read it's content with "cat" Command.
+- Found the Password.
