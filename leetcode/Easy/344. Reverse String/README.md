@@ -21,4 +21,4 @@ You must do this by modifying the input array [in-place](https://en.wikipedia.or
 - `1 <= s.length <= 105`
 - `s[i]` is a [printable ascii character](https://en.wikipedia.org/wiki/ASCII#Printable_characters).
 
-![](./ss.png)
+![alt](./ss.png)
