@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>License Activation</title>
+    <link rel="stylesheet" href="../../styles/main.css">
+</head>
+
+<body>
+    <div class="activation-container">
+        <h2>License Activation</h2>
+        <form id="activationForm">
+            <div class="form-group">
+                <label>License Key:</label>
+                <input type="text" id="licenseKey" required placeholder="Enter your license key">
+            </div>
+            <div class="form-group">
+                <label>Username:</label>
+                <input type="text" id="username" required placeholder="Enter your username">
+            </div>
+            <div class="form-group">
+                <label>Password:</label>
+                <input type="password" id="password" required placeholder="Enter your password">
+            </div>
+            <button type="submit" id="submitBtn">Activate License</button>
+        </form>
+        <div id="activationStatus"></div>
+    </div>
+
+    <script>
+        document.getElementById('activationForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submitBtn');
+            const statusDiv = document.getElementById('activationStatus');
+
+            // Disable submit button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Activating...';
+
+            const licenseKey = document.getElementById('licenseKey').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const result = await window.api.activateLicense({
+                    licenseKey,
+                    username,
+                    password
+                });
+
+                if (result.success) {
+                    statusDiv.textContent = result.message;
+                    statusDiv.className = 'success';
+                    // Success message will be shown briefly before redirect
+                } else {
+                    statusDiv.textContent = result.message;
+                    statusDiv.className = 'error';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Activate License';
+                }
+            } catch (error) {
+                statusDiv.textContent = 'Activation failed: ' + error.message;
+                statusDiv.className = 'error';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Activate License';
+            }
+        });
+    </script>
+</body>
+
+</html>
