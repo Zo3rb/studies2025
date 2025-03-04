@@ -1,4 +1,4 @@
-# الأسبوع الثاني: مقدمة ل إيثيريوم | Week 2: Intro to Ethereum
+# الأسبوع الثاني: مقدمة ل إيثيريوم
 
 أهلا بيك في الأسبوع التاني! الموضوع هيبقي ممتع أكتر كل ما نتحرك لقدام أكتر! 😺 🔥 في الأسبوع دا هتتعلم عن إيثيريم، البلوكتشين اللي هنشتغل عليها
 
@@ -6,7 +6,7 @@
 
 [Ethereum Papers](https://www.notion.so/Ethereum-Papers-1a2b1099640d8186b7bcf3bfca88f3f3?pvs=21)
 
-[Identity on Ethereum | الهوية على إيثريوم](https://www.notion.so/Identity-on-Ethereum-1a2b1099640d81e4abc2fd01e4b62792?pvs=21)
+[**Identity on Ethereum | الهوية على إيثريوم**](https://www.notion.so/Identity-on-Ethereum-1a2b1099640d81e4abc2fd01e4b62792?pvs=21)
 
 [Transactions | المعاملات](https://www.notion.so/Transactions-1a2b1099640d81dca90dd8ff1ba32e5c?pvs=21)
 
@@ -50,8 +50,8 @@
 
 **Lecture 3 Feedback Form:** [https://tally.so/r/3NRd8p](https://tally.so/r/3NRd8p)
 
-**Lecture 4 Slides:**
+**Lecture 4 Slides:** [https://www.canva.com/design/DAGaJZzO_mI/ZhuZZFvvl-ltU2XPlV80cw/view?utm_content=DAGaJZzO_mI&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h792c657706](https://www.canva.com/design/DAGaJZzO_mI/ZhuZZFvvl-ltU2XPlV80cw/view?utm_content=DAGaJZzO_mI&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h792c657706)
 
-**Lecture 4 Recording:**
+**Lecture 4 Recording:** [https://www.youtube.com/live/PHXlB6M2-Ww](https://www.youtube.com/live/PHXlB6M2-Ww)
 
-**Lecture 4 Feedback Form:**
+**Lecture 4 Feedback Form:** [https://tally.so/r/3lMjqN](https://tally.so/r/3lMjqN)
