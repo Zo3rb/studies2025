@@ -1,0 +1,3 @@
+The Instruction was pretty forward and I used:
+```bash
+grep "millionth" data.txt
