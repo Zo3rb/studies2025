@@ -1,0 +1,8 @@
+that was easy too as I solved it before by rotating the characters of the English alphabet
+for the "ROT13" encryption sequence.
+
+- script
+
+```bash
+cat data.txt | tr 'A-Za-Z' 'N-ZA-Mn-za-m'
+```

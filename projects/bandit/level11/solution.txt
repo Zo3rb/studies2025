@@ -1,0 +1,11 @@
+- This lab was easy also.
+
+- Steps I made:
+- --> man base64
+- I found that I can decode a file by giving the command "base64 -d {filename}"
+
+- script:
+
+```bash
+base64 -d data.txt
+```
