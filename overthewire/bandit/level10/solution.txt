@@ -1,0 +1,9 @@
+- a new command added to my Commands
+
+- strings: Extract Human-Readable strings from Binary files.
+
+- Script
+
+```bash
+strings data.txt | grep "="
+```

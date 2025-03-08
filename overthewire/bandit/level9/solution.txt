@@ -1,0 +1,10 @@
+Simple and Easy lab
+
+- Sort the output of the file to make the duplicates listed
+one under the it's equaling
+and then pipe it to find the unique output
+
+- Script:
+```bash
+sort data.txt | uniq -u
+```
