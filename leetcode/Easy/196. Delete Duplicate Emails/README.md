@@ -1,4 +1,4 @@
-[196. Delete Duplicate Emails](https://leetcode.com/problems/delete-duplicate-emails/)
+# [196. Delete Duplicate Emails](https://leetcode.com/problems/delete-duplicate-emails/)
 
 Table: `Person`
 
@@ -50,6 +50,8 @@ Person table:
 +----+------------------+
 ```
 
-**Explanation:** john@example.com is repeated two times. We keep the row with the smallest Id = 1.
+**Explanation:**
 
-![](./ss.png)
+<john@example.com> is repeated two times. We keep the row with the smallest Id = 1.
+
+![ALT TEXT](./ss.png)
