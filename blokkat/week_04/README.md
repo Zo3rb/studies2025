@@ -30,8 +30,8 @@
 
 **Lecture 7 Feedback Form:** [https://tally.so/r/mDMVAR](https://tally.so/r/mDMVAR)
 
-**Lecture 8 Slides:**
+**Lecture 8 Slides:** [https://www.canva.com/design/DAGbOlcm8Ow/bfGhdJMtK5Ls9zXVfgjMiA/edit](https://www.canva.com/design/DAGbOlcm8Ow/bfGhdJMtK5Ls9zXVfgjMiA/edit)
 
-**Lecture 8 Recording:**
+**Lecture 8 Recording:** [https://www.youtube.com/live/qu9EkiVSBe4?si=E4hr3Hi3o0s9vISE](https://www.youtube.com/live/qu9EkiVSBe4?si=E4hr3Hi3o0s9vISE)
 
-**Lecture 8 Feedback Form:**
+**Lecture 8 Feedback Form:** [https://tally.so/r/wAyAPD](https://tally.so/r/wAyAPD)
