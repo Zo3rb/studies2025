@@ -52,16 +52,4 @@ class Stack {
   }
 }
 
-// Example Usage
-if (require.main === module) {
-  const stack = new Stack();
-  stack.push(10);
-  stack.push(20);
-  stack.push(30);
-
-  console.log("Stack Length:", stack.length()); // Output: 3
-  console.log("Stack Peek:", stack.peek()); // Output: 30
-  console.log("Stack Pop:", stack.pop()); // Output: 30
-  console.log("Stack After Pop Length:", stack.length()); // Output: 2
-  console.log("Is Stack Empty?", stack.isEmpty()); // Output: false
-}
+module.exports = Stack;
