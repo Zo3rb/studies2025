@@ -12,31 +12,11 @@ Unlike built-in lists or arrays, this custom implementation helps understand **m
 
 ![Array Representation](https://media.geeksforgeeks.org/wp-content/uploads/20220721080308/array.png)
 
----
-
-## 📌 Project Structure
-
-```bash
-/array_adt
-│── python/
-│   ├── array.py    # Array ADT Implementation in Python
-│   └── test.py     # Test Cases for Python Implementation
-│── javascript/
-│   ├── array.js    # Array ADT Implementation in JavaScript
-│   └── test.js     # Test Cases for JavaScript Implementation
-│── README.md
-
-```
-
----
-
 ## 🚀 Features Implemented
 
 👉 **Dynamic Memory Management** (Unlike Python Lists or JavaScript Arrays)  
 👉 **Manual Insert, Delete, Append, and Search Operations**  
 👉 **Object-Oriented Implementation** for better understanding
-
-![Array Operations](https://upload.wikimedia.org/wikipedia/commons/3/3b/Array-data-structure.svg)
 
 ---
 
