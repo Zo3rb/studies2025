@@ -1,0 +1,14 @@
+{
+  "name": "zth",
+  "version": "1.0.0",
+  "description": "Following E/Ahmed Emad Node.js Zero to Hero node.js Course to recape Node.js Skills",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ali Abuelfottoh",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
