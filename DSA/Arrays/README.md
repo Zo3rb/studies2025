@@ -2,7 +2,7 @@
 
 \***\*Array\*\*** is a collection of items of the same variable type that are stored at contiguous memory locations. It is one of the most popular and simple data structures used in programming.
 
-### Basic terminologies of Array
+## Basic terminologies of Array
 
 - \***\*Array Index:\*\*** In an array, elements are identified by their indexes. Array index starts from 0.
 - \***\*Array element:\*\*** Elements are items stored in an array and can be accessed by their index.
@@ -12,13 +12,11 @@
 
 In an array, all the elements are stored in contiguous memory locations. So, if we initialize an array, the elements will be allocated sequentially in memory. This allows for efficient access and manipulation of elements.
 
-<p float="left">
-  <img src="https://media.geeksforgeeks.org/wp-content/uploads/20250224182515919065/1-.webp" />
-  <br /> <br /> <br />
-  <img src="https://media.geeksforgeeks.org/wp-content/uploads/20250224182515574059/2-.webp" />
-  <br /> <br /> <br />
-    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20250224182515285430/3-.webp" />
-</p>
+![Memory Representation 1](https://media.geeksforgeeks.org/wp-content/uploads/20250224182515919065/1-.webp)
+
+![Memory Representation 2](https://media.geeksforgeeks.org/wp-content/uploads/20250224182515574059/2-.webp)
+
+![Memory Representation 3](https://media.geeksforgeeks.org/wp-content/uploads/20250224182515285430/3-.webp)
 
 ### Why do we Need Arrays?
 
@@ -212,9 +210,9 @@ There are two main types of searching techniques in an array:
 - If a match is found, it returns the index of the element.
 - If the element is not found, the search continues until the end of the array.
 
-##### \***\*Example:\*\***
+#### \***\*Example:\*\***
 
-Consider an array:
+#### \***\*Illustration:\*\***
 
 > `arr = [10, 20, 30, 40, 50]`
 

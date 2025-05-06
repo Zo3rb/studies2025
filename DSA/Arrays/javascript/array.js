@@ -1,80 +1,89 @@
-#!/bin/node
-```Array Data Structure Module```;
-
-class Array {
-  constructor(size) {
-    this.size = size;
+/**
+ * Dynamic Array Class
+ * Note: JavaScript arrays are dynamic by default,
+ * but this class is used to simulate the behavior of a dynamic array.
+ */
+class DynamicArray {
+  /**
+   * @constructor
+   * @param {number} capacity - Initial capacity of the array.
+   */
+  constructor(capacity) {
+    this.capacity = capacity;
     this.length = 0;
-    this.data = new Array(size).fill(null);
+    this.arr = new Array(this.capacity).fill(0);
   }
 
-  display() {
-    ```Class method to Display the Elements```;
-    if (this.length == 0) {
-      console.log("Array is Empty.");
-    } else {
-      console.log(this.data.slice(0, this.length).join(" "));
-    }
+  /**
+   * Get the value at the i-th index.
+   * @param {number} i - The index to get the value from.
+   * @returns {number} - The value at the i-th index.
+   */
+  get(i) {
+    return this.arr[i];
   }
 
-  append(value) {
-    ```Class method to add an Element to the end.```;
-    if (this.length < this.size) {
-      this.data[this.length] = value;
-      this.length += 1;
-    } else {
-      console.log("Array is Full! Cannot add more Elements");
-    }
+  /**
+   * Set a value at the i-th index.
+   * @param {number} i - The index to insert the value at.
+   * @param {number} n - The value to insert.
+   * @returns {void}
+   */
+  set(i, n) {
+    this.arr[i] = n;
   }
 
-  insert(index, value) {
-    ```Class method to insert an Element in a position.```;
-    if (this.length >= this.size) {
-      console.log("Array is full! Cannot insert.");
-      return;
+  /**
+   * Insert a value in the last position of the array.
+   * @param {number} n - The value to insert.
+   * @returns {void}
+   */
+  pushback(n) {
+    if (this.length === this.capacity) {
+      this.resize();
     }
-
-    if (index < 0 && index > this.length) {
-      console.log("Invalid index! Must be between 0 and", this.length);
-      return;
-    }
-
-    for (let i = this.length; i > index; i--) {
-      this.data[i] = this.data[i - 1];
-    }
-
-    this.data[index] = value;
-    this.length += 1;
+    this.arr[this.length] = n;
+    this.length++;
   }
 
-  delete(index) {
-    ```Class method to Delete an Element at Position.```;
-    if (this.length === 0) {
-      console.log("Array is empty! Nothing to delete.");
-      return;
+  /**
+   * Remove the last element in the array.
+   * @returns {number}
+   */
+  popback() {
+    if (this.length > 0) {
+      // soft delete the last element
+      this.length--;
     }
-
-    if (index < 0 && index >= this.length) {
-      console.log("Invalid index! Must be between 0 and", this.length - 1);
-      return;
-    }
-
-    for (let i = index; i < this.length - 1; i++) {
-      this.data[i] = this.data[i + 1];
-    }
-
-    this.data[this.length - 1] = null;
-    this.length -= 1;
+    return this.arr[this.length];
   }
 
-  search(value) {
-    ```Class method to search/traverse Elements.```;
+  /**
+   * Resize the array to double its current capacity.
+   * @returns {void}
+   */
+  resize() {
+    this.capacity *= 2;
+    const newArr = new Array(this.capacity).fill(0);
     for (let i = 0; i < this.length; i++) {
-      if (this.data[i] === value) {
-        return i;
-      }
+      newArr[i] = this.arr[i];
     }
+    this.arr = newArr;
+  }
 
-    return -1;
+  /**
+   * Get the current size of the array.
+   * @returns {number} - The current size.
+   */
+  getSize() {
+    return this.length;
+  }
+
+  /**
+   * Get the current capacity of the array.
+   * @returns {number} - The current capacity.
+   */
+  getCapacity() {
+    return this.capacity;
   }
 }
