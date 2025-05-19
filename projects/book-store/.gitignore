@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+**/node_modules/ # Catches node_modules in any subfolder like server/ or client/
+
+# Build output
+server/dist/
+client/dist/
+
+# Environment variables
+.env
+**/.env
+server/.env
+client/.env
+
+# Prisma
+# server/prisma/migrations/*/*.sql # Optional: if you don't want to commit migration SQL
+!server/prisma/migrations/migration_lock.toml # Keep the lock file
+
+# OS / IDE specific
+.vscode/
+.idea/
+*.DS_Store
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
