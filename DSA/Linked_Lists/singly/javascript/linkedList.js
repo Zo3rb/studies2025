@@ -8,204 +8,232 @@
 
 class Node {
   /**
-   * A node in a singly linked list.
-   * @param {*} data The value stored in the node.
+   *
+   * @param {*} val : Data to be Hold into the Node.
    */
-  constructor(data) {
-    this.data = data;
+  constructor(val) {
+    this.val = val;
     this.next = null;
   }
 }
 
 class LinkedList {
-  /**
-   * A singly linked list.
-   */
   constructor() {
     this.head = null;
+    this.tail = null;
+    this.length = 0;
   }
 
   /**
-   * Returns a string representation of the linked list.
-   * @returns {string} String representation of the linked list.
+   *
+   * @param {*} val : Data to be pushed within the New Node.
+   * @returns {LinkedList} : The whole linked list after adding the new Node.
    */
-  toString() {
-    const nodes = [];
-    let current = this.head;
-    while (current) {
-      nodes.push(String(current.data));
-      current = current.next;
-    }
-    return nodes.join(" -> ") || "[]"; // Handles empty list case
-  }
-
-  /**
-   * Inserts a new node at the end of the linked list.
-   * @param {*} data The data to store in the new node.
-   */
-  insert(data) {
-    const newNode = new Node(data);
+  push(val) {
+    let newNode = new Node(val);
     if (!this.head) {
       this.head = newNode;
-      return;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
     }
 
-    let current = this.head;
-    while (current.next) {
-      current = current.next;
-    }
-    current.next = newNode;
+    this.length++;
+    return this;
   }
 
   /**
-   * Deletes the first node that contains the specified value.
-   * @param {*} value The value to search for and delete.
+   *
+   * @returns : The Popped Node.
    */
-  deleteByValue(value) {
-    if (this.head && this.head.data === value) {
-      this.head = this.head.next;
-      return;
+  pop() {
+    if (!this.head) return undefined;
+
+    let currentNode = this.head;
+    let newTail = currentNode;
+    while (currentNode.next) {
+      newTail = currentNode;
+      currentNode = currentNode.next;
+    }
+    newTail.next = null;
+    this.tail = newTail;
+
+    this.length--;
+
+    if (this.length === 0) {
+      this.head = null;
+      this.tail = null;
     }
 
-    let current = this.head;
-    let prev = null;
-    while (current && current.data !== value) {
-      prev = current;
-      current = current.next;
-    }
-
-    if (current) {
-      prev.next = current.next;
-    }
+    return currentNode;
   }
 
   /**
-   * Deletes the node at the specified position (0-indexed).
-   * @param {number} position The position of the node to delete.
+   *
+   * @returns : The Node that will be shifted (removed at beginning)
    */
-  deleteByPosition(position) {
+  shift() {
+    if (!this.head) return undefined;
+
+    let headNode = this.head;
+    this.head = headNode.next;
+    this.length--;
+
+    if (this.length === 0) {
+      this.tail = null;
+    }
+
+    return headNode;
+  }
+
+  /**
+   *
+   * @param {*} val : The New Node data to be Add on the first.
+   * @returns : The whole linked List.
+   */
+  unShift(val) {
+    const newNode = new Node(val);
     if (!this.head) {
-      return;
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      newNode.next = this.head;
+      this.head = newNode;
     }
 
-    if (position === 0) {
-      this.head = this.head.next;
-      return;
-    }
-
-    let current = this.head;
-    let prev = null;
-    let index = 0;
-    while (current && index < position) {
-      prev = current;
-      current = current.next;
-      index++;
-    }
-
-    if (current) {
-      // Check if the position is valid
-      prev.next = current.next;
-    }
+    this.length++;
+    return this;
   }
 
   /**
-   * Calculates and returns the length of the linked list.
-   * @returns {number} The number of nodes in the linked list.
+   *
+   * @param {Number} index : Index to indicate which Element should be returned.
+   * @returns : the corresponding Node.
    */
-  length() {
-    let count = 0;
-    let current = this.head;
+  get(index) {
+    if (index < 0 || index >= this.length) return null;
+    let currentNode = this.head;
+    let counter = 0;
+    while (counter < index) {
+      currentNode = currentNode.next;
+      counter++;
+    }
 
+    return currentNode;
+  }
+
+  /**
+   *
+   * @param {Number} index : Index to indicate which Element should be Modified.
+   * @param {any} data : The Data which will be the new Value of the Node.
+   * @returns : the corresponding Node.
+   */
+  set(index, data) {
+    const node = this.get(index);
+    if (!node) return null;
+    node.val = data;
+    return node;
+  }
+
+  /**
+   *
+   * @param {Number} index : The index to insert a new node.
+   * @param {*} val : The Data to be inserted within the node.
+   * @returns : The whole linked list.
+   */
+  insert(index, val) {
+    if (index < 0 || index > this.length) return null;
+
+    if (index === 0) {
+      this.unShift(val);
+      return this;
+    }
+
+    if (index === this.length) {
+      this.push(val);
+      return this;
+    }
+
+    const newNode = new Node(val);
+    const prevNode = this.get(index - 1);
+
+    newNode.next = prevNode.next;
+    prevNode.next = newNode;
+
+    this.length++;
+    return this;
+  }
+
+  /**
+   *
+   * @param {number} index - The index of the node to remove.
+   * @returns {Node|null} - The removed node, or null if index is invalid.
+   */
+  remove(index) {
+    if (index < 0 || index >= this.length) return null;
+
+    // Remove head
+    if (index === 0) return this.shift();
+
+    // Remove tail
+    if (index === this.length - 1) return this.pop();
+
+    // Remove in the middle
+    const prevNode = this.get(index - 1);
+    const removedNode = prevNode.next;
+
+    prevNode.next = removedNode.next;
+    this.length--;
+
+    return removedNode;
+  }
+
+  /**
+   *
+   * @returns : The whole list values into an Array type.
+   */
+  toArray() {
+    const result = [];
+    let current = this.head;
     while (current) {
-      count += 1;
+      result.push(current.val);
       current = current.next;
     }
 
-    return count;
+    return result;
   }
 
   /**
-   * Swaps the nodes with the given data values (key1 and key2).
-   * @param {*} key1 The data value of the first node to swap.
-   * @param {*} key2 The data value of the second node to swap.
+   *
+   * @returns : the whole list as an array type printed.
    */
-  nodeSwap(key1, key2) {
-    if (key1 === key2) return;
-
-    let prev1 = null;
-    let current1 = this.head;
-    while (current1 && current1.data !== key1) {
-      prev1 = current1;
-      current1 = current1.next;
-    }
-
-    let prev2 = null;
-    let current2 = this.head;
-    while (current2 && current2.data !== key2) {
-      prev2 = current2;
-      current2 = current2.next;
-    }
-
-    if (!current1 || !current2) return;
-
-    if (prev1) prev1.next = current2;
-    else this.head = current2;
-
-    if (prev2) prev2.next = current1;
-    else this.head = current1;
-
-    [current1.next, current2.next] = [current2.next, current1.next];
+  print() {
+    return console.log(this.toArray);
   }
 
   /**
-   * Reverses the linked list in-place.
+   *
+   * @returns : The whole linked list reversed.
    */
   reverse() {
-    let prev = null;
+    if (!this.head || !this.head.next) return this;
+
     let current = this.head;
+    let prev = null;
+    let next = null;
+
+    this.head = this.tail;
 
     while (current) {
-      const nextNode = current.next;
+      next = current.next;
       current.next = prev;
       prev = current;
-      current = nextNode;
+      current = next;
     }
 
     this.head = prev;
-  }
 
-  /**
-   * Merges this sorted linked list with another sorted linked list.
-   * @param {LinkedList} otherList The other sorted LinkedList to merge.
-   * @returns {LinkedList} A new sorted linked list containing all elements.
-   */
-  mergeSorted(otherList) {
-    const mergedList = new LinkedList();
-    let p1 = this.head;
-    let p2 = otherList.head;
-
-    while (p1 && p2) {
-      if (p1.data <= p2.data) {
-        mergedList.insert(p1.data);
-        p1 = p1.next;
-      } else {
-        mergedList.insert(p2.data);
-        p2 = p2.next;
-      }
-    }
-
-    // Add any remaining elements from list1
-    while (p1) {
-      mergedList.insert(p1.data);
-      p1 = p1.next;
-    }
-
-    // Add any remaining elements from list2
-    while (p2) {
-      mergedList.insert(p2.data);
-      p2 = p2.next;
-    }
-
-    return mergedList;
+    return this;
   }
 }
