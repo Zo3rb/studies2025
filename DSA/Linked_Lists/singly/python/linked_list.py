@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 """
 singly_linked_list.py
@@ -6,133 +6,206 @@ singly_linked_list.py
 This module defines a basic singly linked list data structure in Python.
 """
 
+from typing import Any, Optional
+
+
 class Node:
-    """A node in a singly linked list."""
-    def __init__(self, data):
-        self.data = data
-        self.next = None
+    """
+    A node in a singly linked list.
+
+    Attributes:
+        val: The data stored in the node.
+        next: The reference to the next node.
+    """
+
+    def __init__(self, val: Any) -> None:
+        self.val: Any = val
+        self.next: Optional['Node'] = None
+
 
 class LinkedList:
-    """A singly linked list."""
-    def __init__(self):
-        """Initialize an empty linked list."""
-        self.head = None
+    """
+    Singly Linked List implementation.
+    """
 
-    def __str__(self):
-        """Return a string representation of the linked list."""
-        nodes = []
-        current = self.head
-        while current:
-            nodes.append(str(current.data))
-            current = current.next
-        return " -> ".join(nodes) if nodes else "[]"
+    def __init__(self) -> None:
+        self.head: Optional[Node] = None
+        self.tail: Optional[Node] = None
+        self.length: int = 0
 
-
-    def insert(self, data):
-        """Insert a new node at the end of the linked list."""
-        new_node = Node(data)
+    def push(self, val: Any) -> 'LinkedList':
+        """
+        Adds a new node with the given value to the end of the list.
+        """
+        new_node = Node(val)
         if not self.head:
             self.head = new_node
-            return
+            self.tail = new_node
+        else:
+            assert self.tail is not None
+            self.tail.next = new_node
+            self.tail = new_node
 
-        current = self.head
-        while current.next:
-            current = current.next
-        current.next = new_node
+        self.length += 1
+        return self
 
-    def delete_by_value(self, value):
-        """Delete the first node that contains the specified value."""
-        if self.head and self.head.data == value:
-            self.head = self.head.next
-            return
-
-        current = self.head
-        prev = None
-        while current and current.data != value:
-            prev = current
-            current = current.next
-
-        if current:
-            prev.next = current.next
-
-    def delete_by_position(self, position):
-        """Deletes the node at the specified position (0-indexed)."""
+    def pop(self) -> Optional[Node]:
+        """
+        Removes the last node from the list and returns it.
+        """
         if not self.head:
-            return
+            return None
 
-        if position == 0:
-            self.head = self.head.next
-            return
+        current_node = self.head
+        new_tail = current_node
 
-        current = self.head
-        prev = None
-        index = 0
-        while current and index < position:
-            prev = current
-            current = current.next
-            index += 1
+        while current_node.next:
+            new_tail = current_node
+            current_node = current_node.next
 
-        if current:
-            prev.next = current.next
+        new_tail.next = None
+        self.tail = new_tail
+        self.length -= 1
 
-    def length(self):
+        if self.length == 0:
+            self.head = None
+            self.tail = None
+
+        return current_node
+
+    def shift(self) -> Optional[Node]:
         """
-        Calculates and returns the length of the linked list.
-
-        Returns:
-            int: The number of nodes in the linked list.
+        Removes the first node from the list and returns it.
         """
-        count = 0
+        if not self.head:
+            return None
+
+        head_node = self.head
+        self.head = head_node.next
+        self.length -= 1
+
+        if self.length == 0:
+            self.tail = None
+
+        return head_node
+
+    def unshift(self, val: Any) -> 'LinkedList':
+        """
+        Adds a new node with the given value to the beginning of the list.
+        """
+        new_node = Node(val)
+        if not self.head:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head = new_node
+
+        self.length += 1
+        return self
+
+    def get(self, index: int) -> Optional[Node]:
+        """
+        Returns the node at the specified index.
+        """
+        if index < 0 or index >= self.length:
+            return None
+
+        current_node = self.head
+        for _ in range(index):
+            assert current_node is not None
+            current_node = current_node.next
+
+        return current_node
+
+    def set(self, index: int, data: Any) -> Optional[Node]:
+        """
+        Updates the value of the node at the specified index.
+        """
+        node = self.get(index)
+        if not node:
+            return None
+
+        node.val = data
+        return node
+
+    def insert(self, index: int, val: Any) -> Optional['LinkedList']:
+        """
+        Inserts a new node with the given value at the specified index.
+        """
+        if index < 0 or index > self.length:
+            return None
+
+        if index == 0:
+            return self.unshift(val)
+
+        if index == self.length:
+            return self.push(val)
+
+        new_node = Node(val)
+        prev_node = self.get(index - 1)
+
+        if not prev_node:
+            return None
+
+        new_node.next = prev_node.next
+        prev_node.next = new_node
+        self.length += 1
+
+        return self
+
+    def remove(self, index: int) -> Optional[Node]:
+        """
+        Removes and returns the node at the specified index.
+        """
+        if index < 0 or index >= self.length:
+            return None
+
+        if index == 0:
+            return self.shift()
+
+        if index == self.length - 1:
+            return self.pop()
+
+        prev_node = self.get(index - 1)
+        if not prev_node or not prev_node.next:
+            return None
+
+        removed_node = prev_node.next
+        prev_node.next = removed_node.next
+        self.length -= 1
+
+        return removed_node
+
+    def to_array(self) -> list[Any]:
+        """
+        Converts the linked list to a Python list.
+        """
+        result = []
         current = self.head
 
         while current:
-            count += 1
+            result.append(current.val)
             current = current.next
 
-        return count
+        return result
 
-    def node_swap(self, key1, key2):
+    def print(self) -> None:
         """
-        Swaps the nodes with the given data values (key1 and key2).
-
-        Args:
-            key1: The data value of the first node to swap.
-            key2: The data value of the second node to swap.
+        Prints the linked list as a Python list.
         """
-        if key1 == key2:
-            return
+        print(self.to_array())
 
-        prev1 = None
-        current1 = self.head
-        while current1 and current1.data != key1:
-            prev1 = current1
-            current1 = current1.next
+    def reverse(self) -> 'LinkedList':
+        """
+        Reverses the linked list in place.
+        """
+        if not self.head or not self.head.next:
+            return self
 
-        prev2 = None
-        current2 = self.head
-        while current2 and current2.data != key2:
-            prev2 = current2
-            current2 = current2.next
-
-        if not current1 or not current2:
-            return
-
-        if prev1:
-            prev1.next = current2
-        else:
-            self.head = current2
-
-        if prev2:
-            prev2.next = current1
-        else:
-            self.head = current1
-
-        current1.next, current2.next = current2.next, current1.next
-
-    def reverse(self):
-        """Reverses the linked list in-place."""
-        prev = None
         current = self.head
+        prev = None
+        self.tail = self.head
 
         while current:
             next_node = current.next
@@ -141,79 +214,4 @@ class LinkedList:
             current = next_node
 
         self.head = prev
-
-    def merge_sorted(self, other_list):
-        """
-        Merges this sorted linked list with another sorted linked list.
-
-        Args:
-            other_list: The other sorted LinkedList to merge.
-
-        Returns:
-            LinkedList: A new sorted linked list containing all elements.
-        """
-
-        merged_list = LinkedList()
-        p1 = self.head
-        p2 = other_list.head
-
-        while p1 and p2:
-            if p1.data <= p2.data:
-                merged_list.insert(p1.data)
-                p1 = p1.next
-            else:
-                merged_list.insert(p2.data)
-                p2 = p2.next
-
-        # Add any remaining elements from list1
-        while p1:
-            merged_list.insert(p1.data)
-            p1 = p1.next
-
-        # Add any remaining elements from list2
-        while p2:
-            merged_list.insert(p2.data)
-            p2 = p2.next
-
-        return merged_list
-
-    def remove_duplicates(self):
-        """Removing Duplicates Method."""
-        cur = self.head
-        prev = None
-        dup_values = dict()
-
-        while cur:
-            if cur.data in dup_values:
-                # Remove node:
-                prev.next = cur.next
-                cur = None
-            else:
-                # Have not encountered element before.
-                dup_values[cur.data] = 1
-                prev = cur
-            cur = prev.next
-
-    def print_nth_from_last(self, n):
-        """NTH from list."""
-        p = self.head
-        q = self.head
-
-        if n > 0:
-            count = 0
-            while q:
-                count += 1
-                if count>=n:
-                    break
-                q = q.next
-
-            if not q:
-                print(str(n) + " is greater than the number of nodes in list.")
-                return
-
-            while p and q.next:
-                p = p.next
-                q = q.next
-            return p.data
-        else:
-            return None
+        return self
