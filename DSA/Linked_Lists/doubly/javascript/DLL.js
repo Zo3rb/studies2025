@@ -1,19 +1,16 @@
 #!/usr/bin/env node
 
 /**
- * singly_linked_list.js
+ * doubly_linked_list.js
  *
- * This module defines a basic singly linked list data structure in JavaScript.
+ * This module defines a basic doubly linked list data structure in JavaScript.
  */
 
 class Node {
-  /**
-   *
-   * @param {*} val : Data to be Hold into the Node.
-   */
   constructor(val) {
     this.val = val;
     this.next = null;
+    this.prev = null;
   }
 }
 
@@ -26,15 +23,17 @@ class LinkedList {
 
   /**
    *
-   * @param {*} val : Data to be pushed within the New Node.
-   * @returns {LinkedList} : The whole linked list after adding the new Node.
+   * @param {*} val : The Data Value to be inserted into the new Node.
+   * @returns : The whole Linked List.
    */
   push(val) {
     let newNode = new Node(val);
+
     if (!this.head) {
       this.head = newNode;
       this.tail = newNode;
     } else {
+      newNode.prev = this.tail;
       this.tail.next = newNode;
       this.tail = newNode;
     }
@@ -49,24 +48,21 @@ class LinkedList {
    */
   pop() {
     if (!this.head) return undefined;
-
-    let currentNode = this.head;
-    let newTail = currentNode;
-    while (currentNode.next) {
-      newTail = currentNode;
-      currentNode = currentNode.next;
-    }
-    newTail.next = null;
-    this.tail = newTail;
-
-    this.length--;
-
-    if (this.length === 0) {
+    else if (this.head === this.tail) {
+      let lastNode = this.head;
       this.head = null;
       this.tail = null;
+      this.length--;
+
+      return lastNode;
     }
 
-    return currentNode;
+    let lastNode = this.tail;
+    this.tail = this.tail.prev;
+    this.tail.next = null;
+    this.length--;
+
+    return lastNode;
   }
 
   /**
@@ -75,16 +71,21 @@ class LinkedList {
    */
   shift() {
     if (!this.head) return undefined;
-
-    let headNode = this.head;
-    this.head = headNode.next;
-    this.length--;
-
-    if (this.length === 0) {
+    else if (this.head === this.tail) {
+      let firstNode = this.head;
+      this.head = null;
       this.tail = null;
+      this.length--;
+
+      return firstNode;
     }
 
-    return headNode;
+    let firstNode = this.head;
+    this.head = this.head.next;
+    this.head.prev = null;
+    this.length--;
+
+    return firstNode;
   }
 
   /**
@@ -93,11 +94,13 @@ class LinkedList {
    * @returns : The whole linked List.
    */
   unShift(val) {
-    const newNode = new Node(val);
+    let newNode = new Node(val);
+
     if (!this.head) {
       this.head = newNode;
       this.tail = newNode;
     } else {
+      this.head.prev = newNode;
       newNode.next = this.head;
       this.head = newNode;
     }
@@ -113,6 +116,7 @@ class LinkedList {
    */
   get(index) {
     if (index < 0 || index >= this.length) return null;
+
     let currentNode = this.head;
     let counter = 0;
     while (counter < index) {
@@ -157,9 +161,12 @@ class LinkedList {
 
     const newNode = new Node(val);
     const prevNode = this.get(index - 1);
+    const nextNode = this.get(index);
 
-    newNode.next = prevNode.next;
+    newNode.next = nextNode;
+    newNode.prev = prevNode;
     prevNode.next = newNode;
+    nextNode.prev = newNode;
 
     this.length++;
     return this;
@@ -177,12 +184,14 @@ class LinkedList {
 
     if (index === this.length - 1) return this.pop();
 
-    const prevNode = this.get(index - 1);
-    const removedNode = prevNode.next;
+    const removedNode = this.get(index);
+    const prevNode = removedNode.prev;
+    const nextNode = removedNode.next;
 
-    prevNode.next = removedNode.next;
+    prevNode.next = nextNode;
+    nextNode.prev = prevNode;
+
     this.length--;
-
     return removedNode;
   }
 
@@ -207,30 +216,5 @@ class LinkedList {
    */
   print() {
     return console.log(this.toArray());
-  }
-
-  /**
-   *
-   * @returns : The whole linked list reversed.
-   */
-  reverse() {
-    if (!this.head || !this.head.next) return this;
-
-    let current = this.head;
-    let prev = null;
-    let next = null;
-
-    this.head = this.tail;
-
-    while (current) {
-      next = current.next;
-      current.next = prev;
-      prev = current;
-      current = next;
-    }
-
-    this.head = prev;
-
-    return this;
   }
 }
